@@ -37,13 +37,10 @@ public class Athlete {
     @ManyToMany
     private List<Discipline> disciplines;
 
-    @OneToMany(mappedBy = "athlete", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ResultType> results;
-
     public Athlete() {
     }
 
-    public Athlete(String name, String gender, int age, String imageUrl, AgeGroup ageGroup, Club club, List<Discipline> disciplines, List<ResultType> results) {
+    public Athlete(String name, String gender, int age, String imageUrl, AgeGroup ageGroup, Club club, List<Discipline> disciplines) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -51,7 +48,6 @@ public class Athlete {
         this.ageGroup = ageGroup;
         this.club = club;
         this.disciplines = disciplines;
-        this.results = results;
     }
 
     public void assignAgeGroup() {

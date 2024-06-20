@@ -1,5 +1,10 @@
 package kea3.eksamenstemplate1_backend.club;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ClubDTO {
     private Long id;
     private String name;

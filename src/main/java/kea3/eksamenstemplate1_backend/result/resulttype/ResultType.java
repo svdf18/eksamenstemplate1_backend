@@ -23,9 +23,6 @@ public class ResultType {
 
     private LocalDateTime date;
 
-//    @Enumerated(EnumType.STRING)
-//    private ResultTypeEnum resultType;
-
     @ManyToOne
     private Athlete athlete;
 

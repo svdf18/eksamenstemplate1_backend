@@ -229,9 +229,9 @@ public class InitData implements CommandLineRunner {
         Optional<Discipline> discipline25 = disciplineRepository.findByNameAndGender("4x400 Relay", Discipline.GenderEnum.MIXED);
 
 
-        Athlete athlete1 = new Athlete("Mo Farah", "M", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club1, List.of(discipline1.get(), discipline2.get(), discipline3.get()), null);
-        Athlete athlete2 = new Athlete("Jakob Ingebrigtsen", "M", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club2, List.of(discipline2.get(), discipline3.get()), null);
-        Athlete athlete3 = new Athlete("Sifan Hassan", "F", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club3, List.of(discipline13.get(), discipline14.get(), discipline23.get()), null);
+        Athlete athlete1 = new Athlete("Mo Farah", "M", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club1, List.of(discipline1.orElseThrow(), discipline2.orElseThrow(), discipline3.orElseThrow()));
+        Athlete athlete2 = new Athlete("Jakob Ingebrigtsen", "M", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club2, List.of(discipline2.orElseThrow(), discipline3.orElseThrow()));
+        Athlete athlete3 = new Athlete("Sifan Hassan", "F", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club3, List.of(discipline13.orElseThrow(), discipline14.orElseThrow(), discipline23.orElseThrow()));
 
 
         // Create a list of athletes
@@ -284,7 +284,10 @@ public class InitData implements CommandLineRunner {
 
         // Save results to the database
         for (ResultType result : results) {
+            ResultType existingResult = resultTypeRepository.findByTrackMeetAndAthleteAndDiscipline(result.getTrackMeet(), result.getAthlete(), result.getDiscipline());
+            if (existingResult == null) {
             resultTypeRepository.save(result);
+            }
         }
     }
 }

@@ -60,7 +60,6 @@ public class AthleteService {
             athleteDTO.setAgeGroupName(athlete.getAgeGroup().getAgeGroupName());
             athleteDTO.setClub(athlete.getClub());
             athleteDTO.setDisciplines(athlete.getDisciplines());
-            athleteDTO.setResults(athlete.getResults());
             return athleteDTO;
         }
 

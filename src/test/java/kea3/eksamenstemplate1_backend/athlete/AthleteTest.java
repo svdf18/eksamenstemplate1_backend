@@ -58,19 +58,6 @@ class AthleteTest {
         disciplines.add(discipline2);
         athlete.setDisciplines(disciplines);
         assertEquals(disciplines, athlete.getDisciplines());
-
-        // Test Results
-        ResultType result1 = new ResultType();
-        result1.setId(1L);
-
-        ResultType result2 = new ResultType();
-        result2.setId(2L);
-
-        List<ResultType> results = new ArrayList<>();
-        results.add(result1);
-        results.add(result2);
-        athlete.setResults(results);
-        assertEquals(results, athlete.getResults());
     }
 
     @Test
@@ -101,7 +88,7 @@ class AthleteTest {
         results.add(result1);
         results.add(result2);
 
-        Athlete athlete = new Athlete("John Doe", "Male", 25, "hhh", null, club, disciplines, results);
+        Athlete athlete = new Athlete("John Doe", "Male", 25, "hhh", null, club, disciplines);
         athlete.assignAgeGroup();
 
         assertEquals("John Doe", athlete.getName());
@@ -110,7 +97,5 @@ class AthleteTest {
         assertEquals("hhh", athlete.getImageUrl());
         assertEquals(AgeGroupEnum.ADULT, athlete.getAgeGroup().getAgeGroupName());
         assertEquals(club, athlete.getClub());
-        assertEquals(disciplines, athlete.getDisciplines());
-        assertEquals(results, athlete.getResults());
     }
 }
