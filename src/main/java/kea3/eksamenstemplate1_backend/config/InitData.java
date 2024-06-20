@@ -29,7 +29,8 @@ public class InitData implements CommandLineRunner {
                 new Item("Item 1"),
                 new Item("Item 2"),
                 new Item("Item 3"),
-                new Item("Item 4")
+                new Item("Item 4"),
+                new Item("Item 5")
         );
 
         for (Item item : items) {

@@ -1,10 +1,7 @@
 package kea3.eksamenstemplate1_backend.template;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,4 +31,35 @@ public class ItemController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<ItemDTO> createItem(@RequestBody ItemDTO itemDTO) {
+        try {
+            ItemDTO createdItem = itemService.createItem(itemDTO);
+            return ResponseEntity.ok(createdItem);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PatchMapping("/edit/{id}")
+    public ResponseEntity<ItemDTO> updateItem(@PathVariable Long id, @RequestBody ItemDTO itemDTO) {
+        try {
+            ItemDTO updatedItem = itemService.updateItem(id, itemDTO);
+            return ResponseEntity.ok(updatedItem);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ItemDTO> deleteItem(@PathVariable Long id) {
+        try {
+            ItemDTO deletedItem = itemService.deleteItem(id);
+            return ResponseEntity.ok(deletedItem);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
