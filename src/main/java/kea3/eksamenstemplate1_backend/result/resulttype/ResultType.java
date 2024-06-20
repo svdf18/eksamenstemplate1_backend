@@ -25,4 +25,14 @@ public class ResultType {
 
     @ManyToOne
     private Athlete athlete;
+
+    public ResultType(TrackMeet trackMeet, LocalDateTime date, ResultTypeEnum resultType, Athlete athlete) {
+        this.trackMeet = trackMeet;
+        this.date = date;
+        this.resultType = resultType;
+        this.athlete = athlete;
+    }
+
+    public ResultType() {
+    }
 }

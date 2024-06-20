@@ -18,8 +18,9 @@ public class Club {
     private String name;
     private String city;
 
-    public Club(String name) {
+    public Club(String name, String city) {
         this.name = name;
+        this.city = city;
     }
 
     public Club() {

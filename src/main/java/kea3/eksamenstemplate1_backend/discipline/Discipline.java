@@ -1,9 +1,7 @@
 package kea3.eksamenstemplate1_backend.discipline;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import kea3.eksamenstemplate1_backend.result.resulttype.ResultTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,9 +15,11 @@ public class Discipline {
     private Long id;
 
     private String name;
-    private String resultType; // This should probably be an enum
 
-    public Discipline(String name, String resultType) {
+    @Enumerated(EnumType.STRING)
+    private ResultTypeEnum resultType;
+
+    public Discipline(String name, ResultTypeEnum resultType) {
         this.name = name;
         this.resultType = resultType;
     }
