@@ -1,7 +1,6 @@
 package kea3.eksamenstemplate1_backend.agegroup;
 
 public enum AgeGroupEnum {
-    CHILDREN(6, 9),
     YOUTH(10, 13),
     JUNIOR(14, 22),
     ADULT(23, 40),

@@ -17,13 +17,27 @@ public class Discipline {
     private String name;
 
     @Enumerated(EnumType.STRING)
+    private GenderEnum gender;
+
+    @Enumerated(EnumType.STRING)
     private ResultTypeEnum resultType;
 
-    public Discipline(String name, ResultTypeEnum resultType) {
+//    public GenderEnum getGender() {
+//        return gender;
+//    }
+
+    public Discipline(String name, GenderEnum gender, ResultTypeEnum resultType) {
         this.name = name;
+        this.gender = gender;
         this.resultType = resultType;
     }
 
     public Discipline() {
     }
+
+    public enum GenderEnum {
+        MENS,
+        WOMENS,
+        MIXED
+    };
 }

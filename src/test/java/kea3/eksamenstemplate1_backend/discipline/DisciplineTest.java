@@ -50,8 +50,9 @@ class DisciplineTest {
 
     @Test
     void testParameterizedConstructor() {
-        Discipline discipline = new Discipline("High Jump", ResultTypeEnum.DISTANCE);
+        Discipline discipline = new Discipline("High Jump", Discipline.GenderEnum.WOMENS, ResultTypeEnum.DISTANCE);
         assertEquals("High Jump", discipline.getName());
+        assertEquals(Discipline.GenderEnum.WOMENS, discipline.getGender());
         assertEquals(ResultTypeEnum.DISTANCE, discipline.getResultType());
     }
 }

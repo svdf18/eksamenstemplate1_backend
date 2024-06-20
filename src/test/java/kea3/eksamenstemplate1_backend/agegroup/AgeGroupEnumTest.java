@@ -7,7 +7,6 @@ class AgeGroupEnumTest {
 
     @Test
     void testGetMinAge() {
-        assertEquals(6, AgeGroupEnum.CHILDREN.getMinAge());
         assertEquals(10, AgeGroupEnum.YOUTH.getMinAge());
         assertEquals(14, AgeGroupEnum.JUNIOR.getMinAge());
         assertEquals(23, AgeGroupEnum.ADULT.getMinAge());
@@ -16,7 +15,6 @@ class AgeGroupEnumTest {
 
     @Test
     void testGetMaxAge() {
-        assertEquals(9, AgeGroupEnum.CHILDREN.getMaxAge());
         assertEquals(13, AgeGroupEnum.YOUTH.getMaxAge());
         assertEquals(22, AgeGroupEnum.JUNIOR.getMaxAge());
         assertEquals(40, AgeGroupEnum.ADULT.getMaxAge());
@@ -25,7 +23,6 @@ class AgeGroupEnumTest {
 
     @Test
     void testGetAgeGroupByAge() {
-        assertEquals(AgeGroupEnum.CHILDREN, AgeGroupEnum.getAgeGroupByAge(7));
         assertEquals(AgeGroupEnum.YOUTH, AgeGroupEnum.getAgeGroupByAge(12));
         assertEquals(AgeGroupEnum.JUNIOR, AgeGroupEnum.getAgeGroupByAge(18));
         assertEquals(AgeGroupEnum.ADULT, AgeGroupEnum.getAgeGroupByAge(30));

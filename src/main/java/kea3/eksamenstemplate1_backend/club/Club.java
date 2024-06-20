@@ -15,6 +15,7 @@ public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String city;
 
@@ -22,7 +23,6 @@ public class Club {
         this.name = name;
         this.city = city;
     }
-
     public Club() {
     }
 }
