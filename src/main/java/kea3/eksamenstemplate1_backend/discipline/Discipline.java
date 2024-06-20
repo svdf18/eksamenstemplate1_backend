@@ -22,9 +22,6 @@ public class Discipline {
     @Enumerated(EnumType.STRING)
     private ResultTypeEnum resultType;
 
-//    public GenderEnum getGender() {
-//        return gender;
-//    }
 
     public Discipline(String name, GenderEnum gender, ResultTypeEnum resultType) {
         this.name = name;

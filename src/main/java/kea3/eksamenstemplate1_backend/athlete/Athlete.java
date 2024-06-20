@@ -26,6 +26,8 @@ public class Athlete {
 
     private int age;
 
+    private String imageUrl;
+
     @ManyToOne
     private AgeGroup ageGroup;
 
@@ -41,10 +43,11 @@ public class Athlete {
     public Athlete() {
     }
 
-    public Athlete(String name, String gender, int age, AgeGroup ageGroup, Club club, List<Discipline> disciplines, List<ResultType> results) {
+    public Athlete(String name, String gender, int age, String imageUrl, AgeGroup ageGroup, Club club, List<Discipline> disciplines, List<ResultType> results) {
         this.name = name;
         this.gender = gender;
         this.age = age;
+        this.imageUrl = imageUrl;
         this.ageGroup = ageGroup;
         this.club = club;
         this.disciplines = disciplines;

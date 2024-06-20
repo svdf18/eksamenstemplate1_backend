@@ -11,4 +11,16 @@ import lombok.Setter;
 public class ResultPoints extends ResultType {
 
         private int points;
+
+        public ResultPoints() {
+        }
+
+        public ResultPoints(int points) {
+                this.points = points;
+        }
+
+        public ResultPoints(ResultType resultType, int points) {
+                super();
+                this.points = points;
+        }
 }

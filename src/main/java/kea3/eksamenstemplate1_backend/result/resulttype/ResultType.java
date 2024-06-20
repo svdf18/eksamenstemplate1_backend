@@ -2,6 +2,7 @@ package kea3.eksamenstemplate1_backend.result.resulttype;
 
 import jakarta.persistence.*;
 import kea3.eksamenstemplate1_backend.athlete.Athlete;
+import kea3.eksamenstemplate1_backend.discipline.Discipline;
 import kea3.eksamenstemplate1_backend.trackmeet.TrackMeet;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,19 +19,25 @@ public class ResultType {
     private Long id;
 
     @ManyToOne
-    TrackMeet trackMeet;
+    private TrackMeet trackMeet;
+
     private LocalDateTime date;
 
-    private ResultTypeEnum resultType;
+//    @Enumerated(EnumType.STRING)
+//    private ResultTypeEnum resultType;
 
     @ManyToOne
     private Athlete athlete;
 
-    public ResultType(TrackMeet trackMeet, LocalDateTime date, ResultTypeEnum resultType, Athlete athlete) {
+    @ManyToOne
+    private Discipline discipline;
+
+
+    public ResultType(TrackMeet trackMeet, LocalDateTime date, Athlete athlete, Discipline discipline) {
         this.trackMeet = trackMeet;
         this.date = date;
-        this.resultType = resultType;
         this.athlete = athlete;
+        this.discipline = discipline;
     }
 
     public ResultType() {

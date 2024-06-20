@@ -17,6 +17,7 @@ public class AthleteDTO {
     private String name;
     private String gender;
     private int age;
+    private String imageUrl;
     private AgeGroupEnum ageGroupName;
     private Club club;
     private List<Discipline> disciplines;
@@ -25,11 +26,12 @@ public class AthleteDTO {
     public AthleteDTO() {
     }
 
-    public AthleteDTO(Long id, String name, String gender, int age, AgeGroupEnum ageGroupName, Club club, List<Discipline> disciplines, List<ResultType> results) {
+    public AthleteDTO(Long id, String name, String gender, int age, String imageUrl, AgeGroupEnum ageGroupName, Club club, List<Discipline> disciplines, List<ResultType> results) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
+        this.imageUrl = imageUrl;
         this.ageGroupName = ageGroupName;
         this.club = club;
         this.disciplines = disciplines;

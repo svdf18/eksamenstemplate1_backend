@@ -101,12 +101,13 @@ class AthleteTest {
         results.add(result1);
         results.add(result2);
 
-        Athlete athlete = new Athlete("John Doe", "Male", 25, null, club, disciplines, results);
+        Athlete athlete = new Athlete("John Doe", "Male", 25, "hhh", null, club, disciplines, results);
         athlete.assignAgeGroup();
 
         assertEquals("John Doe", athlete.getName());
         assertEquals("Male", athlete.getGender());
         assertEquals(25, athlete.getAge());
+        assertEquals("hhh", athlete.getImageUrl());
         assertEquals(AgeGroupEnum.ADULT, athlete.getAgeGroup().getAgeGroupName());
         assertEquals(club, athlete.getClub());
         assertEquals(disciplines, athlete.getDisciplines());

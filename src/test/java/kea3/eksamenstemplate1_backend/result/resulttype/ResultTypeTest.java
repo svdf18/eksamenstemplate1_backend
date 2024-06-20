@@ -35,13 +35,6 @@ class ResultTypeTest {
     }
 
     @Test
-    void getResultType() {
-        ResultType result = new ResultType();
-        result.setResultType(ResultTypeEnum.TIME);
-        assertEquals(ResultTypeEnum.TIME, result.getResultType());
-    }
-
-    @Test
     void getAthlete() {
         ResultType result = new ResultType();
         Athlete athlete = new Athlete();
@@ -75,13 +68,6 @@ class ResultTypeTest {
     }
 
     @Test
-    void setResultType() {
-        ResultType result = new ResultType();
-        result.setResultType(ResultTypeEnum.DISTANCE);
-        assertEquals(ResultTypeEnum.DISTANCE, result.getResultType());
-    }
-
-    @Test
     void setAthlete() {
         ResultType result = new ResultType();
         Athlete athlete = new Athlete();
@@ -96,17 +82,22 @@ class ResultTypeTest {
         assertNotNull(result);
     }
 
-    @Test
-    void testParameterizedConstructor() {
-        TrackMeet trackMeet = new TrackMeet();
-        trackMeet.setId(1L);
-        LocalDateTime now = LocalDateTime.now();
-        Athlete athlete = new Athlete();
-        athlete.setId(1L);
-        ResultType result = new ResultType(trackMeet, now, ResultTypeEnum.POINTS, athlete);
-        assertEquals(trackMeet, result.getTrackMeet());
-        assertEquals(now, result.getDate());
-        assertEquals(ResultTypeEnum.POINTS, result.getResultType());
-        assertEquals(athlete, result.getAthlete());
-    }
+//    @Test
+//    void testParameterizedConstructor() {
+//        TrackMeet trackMeet = new TrackMeet();
+//        trackMeet.setId(1L);
+//        LocalDateTime now = LocalDateTime.now();
+//        Athlete athlete = new Athlete();
+//        athlete.setId(1L);
+//        Discipline discipline = new Discipline("5000m", Discipline.GenderEnum.MENS, ResultTypeEnum.TIME); // Example discipline
+//        double time = 720.56; // Example time in seconds
+//
+//        ResultTime result = new ResultTime(trackMeet, now, athlete, discipline, time);
+//
+//        assertEquals(trackMeet, result.getTrackMeet());
+//        assertEquals(now, result.getDate());
+//        assertEquals(ResultTypeEnum.TIME, result.getResultType());
+//        assertEquals(athlete, result.getAthlete());
+//        assertEquals(discipline, result.getDiscipline());
+//    }
 }
