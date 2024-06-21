@@ -17,22 +17,22 @@ public class AthleteDTO {
     private String name;
     private String gender;
     private int age;
+    private AgeGroupEnum ageGroup;
     private String imageUrl;
-    private AgeGroupEnum ageGroupName;
     private Club club;
     private List<Discipline> disciplines;
 
-    public AthleteDTO() {
-    }
-
-    public AthleteDTO(Long id, String name, String gender, int age, String imageUrl, AgeGroupEnum ageGroupName, Club club, List<Discipline> disciplines) {
+    public AthleteDTO(Long id, String name, String gender, int age, String imageUrl, AgeGroupEnum ageGroup, Club club, List<Discipline> disciplines) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.imageUrl = imageUrl;
-        this.ageGroupName = ageGroupName;
+        this.ageGroup = ageGroup;
         this.club = club;
         this.disciplines = disciplines;
+    }
+
+    public AthleteDTO() {
     }
 }

@@ -1,5 +1,8 @@
 package kea3.eksamenstemplate1_backend.athlete;
 
+import kea3.eksamenstemplate1_backend.agegroup.AgeGroup;
+import kea3.eksamenstemplate1_backend.agegroup.AgeGroupEnum;
+import kea3.eksamenstemplate1_backend.agegroup.AgeGroupRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,10 +12,12 @@ import java.util.stream.Collectors;
 public class AthleteService {
 
         private final AthleteRepository athleteRepository;
+    private final AgeGroupRepository ageGroupRepository;
 
-        public AthleteService(AthleteRepository athleteRepository) {
+    public AthleteService(AthleteRepository athleteRepository, AgeGroupRepository ageGroupRepository) {
             this.athleteRepository = athleteRepository;
-        }
+        this.ageGroupRepository = ageGroupRepository;
+    }
 
         public List<AthleteDTO> getAllAthletes() {
             List<Athlete> athletes = athleteRepository.findAll();
@@ -28,6 +33,18 @@ public class AthleteService {
         public AthleteDTO createAthlete(AthleteDTO athleteDTO) {
             Athlete athlete = new Athlete();
             athlete.setName(athleteDTO.getName());
+            athlete.setGender(athleteDTO.getGender());
+            athlete.setAge(athleteDTO.getAge());
+            athlete.setImageUrl(athleteDTO.getImageUrl());
+            athlete.setClub(athleteDTO.getClub());
+            athlete.setDisciplines(athleteDTO.getDisciplines());
+
+            AgeGroupEnum ageGroupEnum = AgeGroupEnum.getAgeGroupByAge(athleteDTO.getAge());
+
+            AgeGroup ageGroup = ageGroupRepository.findByAgeGroupName(ageGroupEnum);
+            if (ageGroup != null) {
+                athlete.setAgeGroup(ageGroup);
+            }
 
             athleteRepository.save(athlete);
 
@@ -38,6 +55,17 @@ public class AthleteService {
             Athlete athlete = athleteRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Athlete not found with ID: " + id));
             athlete.setName(athleteDTO.getName());
+            athlete.setGender(athleteDTO.getGender());
+            athlete.setAge(athleteDTO.getAge());
+            athlete.setImageUrl(athleteDTO.getImageUrl());
+            athlete.setClub(athleteDTO.getClub());
+            athlete.setDisciplines(athleteDTO.getDisciplines());
+
+            AgeGroupEnum ageGroupEnum = AgeGroupEnum.getAgeGroupByAge(athleteDTO.getAge());
+            AgeGroup ageGroup = ageGroupRepository.findByAgeGroupName(ageGroupEnum);
+            if (ageGroup != null) {
+                athlete.setAgeGroup(ageGroup);
+            }
 
             athleteRepository.save(athlete);
 
@@ -57,10 +85,23 @@ public class AthleteService {
             athleteDTO.setName(athlete.getName());
             athleteDTO.setGender(athlete.getGender());
             athleteDTO.setAge(athlete.getAge());
-            athleteDTO.setAgeGroupName(athlete.getAgeGroup().getAgeGroupName());
+            athleteDTO.setImageUrl(athlete.getImageUrl());
             athleteDTO.setClub(athlete.getClub());
             athleteDTO.setDisciplines(athlete.getDisciplines());
             return athleteDTO;
         }
+
+        public Athlete convertToEntity(AthleteDTO athleteDTO) {
+            Athlete athlete = new Athlete();
+            athlete.setName(athleteDTO.getName());
+            athlete.setGender(athleteDTO.getGender());
+            athlete.setAge(athleteDTO.getAge());
+            athlete.setImageUrl(athleteDTO.getImageUrl());
+            athlete.setClub(athleteDTO.getClub());
+            athlete.setDisciplines(athleteDTO.getDisciplines());
+            return athlete;
+        }
+
+
 
 }

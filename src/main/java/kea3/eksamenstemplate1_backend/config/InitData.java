@@ -229,9 +229,9 @@ public class InitData implements CommandLineRunner {
         Optional<Discipline> discipline25 = disciplineRepository.findByNameAndGender("4x400 Relay", Discipline.GenderEnum.MIXED);
 
 
-        Athlete athlete1 = new Athlete("Mo Farah", "M", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club1, List.of(discipline1.orElseThrow(), discipline2.orElseThrow(), discipline3.orElseThrow()));
-        Athlete athlete2 = new Athlete("Jakob Ingebrigtsen", "M", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club2, List.of(discipline2.orElseThrow(), discipline3.orElseThrow()));
-        Athlete athlete3 = new Athlete("Sifan Hassan", "F", 25, "https://www.example.com/johndoe.jpg", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club3, List.of(discipline13.orElseThrow(), discipline14.orElseThrow(), discipline23.orElseThrow()));
+        Athlete athlete1 = new Athlete("Mo Farah", "M", 25, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg2.thejournal.ie%2Farticle%2F3672445%2Friver%3Fversion%3D3672446%26width%3D1340&f=1&nofb=1&ipt=99a7520dbcdd2bd795e0b778f380d2be1391c8d34e5a4be22d5990b05433cdd8&ipo=images", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club1, List.of(discipline1.orElseThrow(), discipline2.orElseThrow(), discipline3.orElseThrow()));
+        Athlete athlete2 = new Athlete("Jakob Ingebrigtsen", "M", 25, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Frunningmagazine.ca%2Fwp-content%2Fuploads%2F2023%2F03%2FIngebrigtsen_Jakob-R-Worlds22-1200x675.jpg&f=1&nofb=1&ipt=8c476501ef0688524f1049cbe0ac92e6c6c82e8e4af358909e9b632a6619211d&ipo=images", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club2, List.of(discipline2.orElseThrow(), discipline3.orElseThrow()));
+        Athlete athlete3 = new Athlete("Sifan Hassan", "F", 25, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdqtjif.bitlydns.net%2Fwp-content%2Fuploads%2F2021%2F08%2FNeerlandesa-Sifan-Hassan.jpg&f=1&nofb=1&ipt=8a5881483ce8d6dbde2c2fe107c15817bbab172f4db634a2328c5090f117197c&ipo=images", ageGroupRepository.findByAgeGroupName(AgeGroupEnum.ADULT), club3, List.of(discipline13.orElseThrow(), discipline14.orElseThrow(), discipline23.orElseThrow()));
 
 
         // Create a list of athletes
