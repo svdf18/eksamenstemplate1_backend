@@ -35,7 +35,7 @@ class AthleteTest {
 
         // Test AgeGroup assignment
         athlete.assignAgeGroup();
-        assertEquals(AgeGroupEnum.ADULT, athlete.getAgeGroup().getAgeGroupName());
+        assertEquals(AgeGroupEnum.SENIOR, athlete.getAgeGroup().getAgeGroupName());
 
         // Test Club
         Club club = new Club();
@@ -95,7 +95,7 @@ class AthleteTest {
         assertEquals("Male", athlete.getGender());
         assertEquals(25, athlete.getAge());
         assertEquals("hhh", athlete.getImageUrl());
-        assertEquals(AgeGroupEnum.ADULT, athlete.getAgeGroup().getAgeGroupName());
+        assertEquals(AgeGroupEnum.SENIOR, athlete.getAgeGroup().getAgeGroupName());
         assertEquals(club, athlete.getClub());
     }
 }

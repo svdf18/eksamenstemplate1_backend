@@ -86,6 +86,9 @@ public class AthleteService {
             athleteDTO.setGender(athlete.getGender());
             athleteDTO.setAge(athlete.getAge());
             athleteDTO.setImageUrl(athlete.getImageUrl());
+            if (athlete.getAgeGroup() != null) {
+                athleteDTO.setAgeGroup(athlete.getAgeGroup().getAgeGroupName());
+            }
             athleteDTO.setClub(athlete.getClub());
             athleteDTO.setDisciplines(athlete.getDisciplines());
             return athleteDTO;
@@ -97,6 +100,7 @@ public class AthleteService {
             athlete.setGender(athleteDTO.getGender());
             athlete.setAge(athleteDTO.getAge());
             athlete.setImageUrl(athleteDTO.getImageUrl());
+            athlete.setAgeGroup(new AgeGroup(athleteDTO.getAgeGroup()));
             athlete.setClub(athleteDTO.getClub());
             athlete.setDisciplines(athleteDTO.getDisciplines());
             return athlete;

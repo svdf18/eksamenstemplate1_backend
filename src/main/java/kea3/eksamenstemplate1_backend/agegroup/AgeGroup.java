@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
 @Setter
 public class AgeGroup {
 
@@ -13,6 +12,7 @@ public class AgeGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private AgeGroupEnum ageGroupName;
 

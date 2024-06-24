@@ -1,10 +1,11 @@
 package kea3.eksamenstemplate1_backend.agegroup;
 
 public enum AgeGroupEnum {
+    CHILD(0, 9),
     YOUTH(10, 13),
     JUNIOR(14, 22),
-    ADULT(23, 40),
-    SENIOR(41, Integer.MAX_VALUE);
+    SENIOR(23, 40),
+    VETERAN(41, Integer.MAX_VALUE);
 
     private final int minAge;
     private final int maxAge;

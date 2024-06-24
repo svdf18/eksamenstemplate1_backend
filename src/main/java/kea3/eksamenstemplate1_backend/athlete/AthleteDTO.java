@@ -3,7 +3,6 @@ package kea3.eksamenstemplate1_backend.athlete;
 import kea3.eksamenstemplate1_backend.agegroup.AgeGroupEnum;
 import kea3.eksamenstemplate1_backend.club.Club;
 import kea3.eksamenstemplate1_backend.discipline.Discipline;
-import kea3.eksamenstemplate1_backend.result.resulttype.ResultType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +16,8 @@ public class AthleteDTO {
     private String name;
     private String gender;
     private int age;
-    private AgeGroupEnum ageGroup;
     private String imageUrl;
+    private AgeGroupEnum ageGroup;
     private Club club;
     private List<Discipline> disciplines;
 
