@@ -22,6 +22,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -256,7 +258,6 @@ public class InitData implements CommandLineRunner {
     }
 
     private void createResults() {
-
         TrackMeet trackMeet1 = trackMeetRepository.findByName("Tokyo 2021");
         TrackMeet trackMeet2 = trackMeetRepository.findByName("Osaka 2021");
         TrackMeet trackMeet3 = trackMeetRepository.findByName("New York 2021");
@@ -276,7 +277,6 @@ public class InitData implements CommandLineRunner {
         Athlete athlete12 = athleteRepository.findByName("Fred Kerley");
         Athlete athlete13 = athleteRepository.findByName("Shericka Jackson");
         Athlete athlete14 = athleteRepository.findByName("Eluid Kipchoge");
-
 
         Optional<Discipline> discipline1 = disciplineRepository.findByNameAndGender("5000m", Discipline.GenderEnum.MENS);
         Optional<Discipline> discipline2 = disciplineRepository.findByNameAndGender("10000m", Discipline.GenderEnum.MENS);
@@ -304,37 +304,46 @@ public class InitData implements CommandLineRunner {
         Optional<Discipline> discipline24 = disciplineRepository.findByNameAndGender("Heptathlon", Discipline.GenderEnum.WOMENS);
         Optional<Discipline> discipline25 = disciplineRepository.findByNameAndGender("4x400 Relay", Discipline.GenderEnum.MIXED);
 
-
-
         System.out.println("Creating results");
 
         LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
 
-        ResultTime result1Athlete1Discipline1 = new ResultTime(trackMeet1, now, athlete1, discipline1.get(), 13.333);
-        ResultTime result1Athlete1Discipline2 = new ResultTime(trackMeet2, now, athlete1, discipline2.get(), 28.4512);
-        ResultTime result1Athlete1Discipline3 = new ResultTime(trackMeet3, now, athlete1, discipline3.get(), 3.5978);
+        // Example times, adjust as needed
+        LocalTime time1 = LocalTime.parse("00:13:22.111", timeFormatter);
+        LocalTime time2 = LocalTime.parse("00:28:22.122", timeFormatter);
+        LocalTime time3 = LocalTime.parse("00:03:38.043", timeFormatter);
+
+        ResultTime result1Athlete1Discipline1 = new ResultTime(trackMeet1, now, athlete1, discipline1.get(), time1);
+        ResultTime result1Athlete1Discipline2 = new ResultTime(trackMeet2, now, athlete1, discipline2.get(), time2);
+        ResultTime result1Athlete1Discipline3 = new ResultTime(trackMeet3, now, athlete1, discipline3.get(), time3);
 
         // Define results for athlete2
-        ResultTime result1Athlete2Discipline2 = new ResultTime(trackMeet2, now, athlete2, discipline2.get(), 27.5530);
-        ResultTime result1Athlete2Discipline3 = new ResultTime(trackMeet3, now, athlete2, discipline3.get(), 3.5622);
+        LocalTime time4 = LocalTime.parse("00:28:23.760", timeFormatter);
+        LocalTime time5 = LocalTime.parse("00:03:33.904", timeFormatter);
+
+        ResultTime result1Athlete2Discipline2 = new ResultTime(trackMeet2, now, athlete2, discipline2.get(), time4);
+        ResultTime result1Athlete2Discipline3 = new ResultTime(trackMeet3, now, athlete2, discipline3.get(), time5);
 
         // Define results for athlete3
         ResultDistance result1Athlete3Discipline4 = new ResultDistance(trackMeet4, now, athlete3, discipline4.get(), 1.98);
 
         // Define results for athlete4
-        ResultTime result1Athlete4Discipline5 = new ResultTime(trackMeet1, now, athlete4, discipline5.get(), 45.123);
+        LocalTime time6 = LocalTime.parse("00:00:47.453", timeFormatter);
+        ResultTime result1Athlete4Discipline5 = new ResultTime(trackMeet1, now, athlete4, discipline5.get(), time6);
         ResultDistance result1Athlete4Discipline6 = new ResultDistance(trackMeet2, now, athlete4, discipline6.get(), 78.5);
         ResultDistance result1Athlete4Discipline7 = new ResultDistance(trackMeet3, now, athlete4, discipline7.get(), 45.6);
 
         // Define results for athlete5
-        ResultTime result1Athlete5Discipline17 = new ResultTime(trackMeet4, now, athlete5, discipline17.get(), 15.5);
+        LocalTime time7 = LocalTime.parse("00:00:52.304", timeFormatter);
+        ResultTime result1Athlete5Discipline17 = new ResultTime(trackMeet4, now, athlete5, discipline17.get(), time7);
         ResultDistance result1Athlete5Discipline18 = new ResultDistance(trackMeet1, now, athlete5, discipline18.get(), 17.5);
         ResultDistance result1Athlete5Discipline19 = new ResultDistance(trackMeet2, now, athlete5, discipline19.get(), 20.5);
 
         // Define results for athlete6
-        ResultTime result1Athlete6Discipline4 = new ResultTime(trackMeet4, now, athlete6, discipline5.get(), 2.05);
+        LocalTime time8 = LocalTime.parse("00:00:51.921", timeFormatter);
+        ResultTime result1Athlete6Discipline4 = new ResultTime(trackMeet4, now, athlete6, discipline5.get(), time8);
         ResultDistance result1Athlete6Discipline5 = new ResultDistance(trackMeet1, now, athlete6, discipline6.get(), 45.123);
-
 
         // Create a list of results
         List<ResultType> results = List.of(
@@ -343,15 +352,13 @@ public class InitData implements CommandLineRunner {
                 result1Athlete4Discipline5, result1Athlete4Discipline6, result1Athlete4Discipline7,
                 result1Athlete5Discipline17, result1Athlete5Discipline18, result1Athlete5Discipline19,
                 result1Athlete6Discipline4, result1Athlete6Discipline5
-
-
         );
 
         // Save results to the database
         for (ResultType result : results) {
             ResultType existingResult = resultTypeRepository.findByTrackMeetAndAthleteAndDiscipline(result.getTrackMeet(), result.getAthlete(), result.getDiscipline());
             if (existingResult == null) {
-            resultTypeRepository.save(result);
+                resultTypeRepository.save(result);
             }
         }
     }

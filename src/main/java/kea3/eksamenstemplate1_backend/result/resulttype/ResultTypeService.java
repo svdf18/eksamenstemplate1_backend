@@ -8,6 +8,8 @@ import kea3.eksamenstemplate1_backend.result.resulttime.ResultTime;
 import kea3.eksamenstemplate1_backend.trackmeet.TrackMeet;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 public class ResultTypeService {
 
     private final ResultTypeRepository resultTypeRepository;
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
 
     public ResultTypeService(ResultTypeRepository resultTypeRepository) {
         this.resultTypeRepository = resultTypeRepository;
@@ -47,7 +50,8 @@ public class ResultTypeService {
         existingResult.setDiscipline(resultTypeDTO.getDiscipline());
 
         if (existingResult instanceof ResultTime) {
-            ((ResultTime) existingResult).setTime(resultTypeDTO.getTime());
+            LocalTime localTime = stringToLocalTime(resultTypeDTO.getTime());
+            ((ResultTime) existingResult).setTime(localTime);
         } else if (existingResult instanceof ResultPoints) {
             ((ResultPoints) existingResult).setPoints(resultTypeDTO.getPoints());
         } else if (existingResult instanceof ResultDistance) {
@@ -71,7 +75,7 @@ public class ResultTypeService {
             return new ResultTypeDTO(
                     resultTime.getId(), resultTime.getTrackMeet(), resultTime.getDate(),
                     resultTime.getAthlete(), resultTime.getDiscipline(), ResultTypeEnum.TIME,
-                    resultTime.getTime(), null, null);
+                    localTimeToString(resultTime.getTime()), null, null);
         } else if (resultType instanceof ResultPoints) {
             ResultPoints resultPoints = (ResultPoints) resultType;
             return new ResultTypeDTO(
@@ -93,7 +97,7 @@ public class ResultTypeService {
             case TIME:
                 return new ResultTime(
                         resultTypeDTO.getTrackMeet(), resultTypeDTO.getDate(), resultTypeDTO.getAthlete(),
-                        resultTypeDTO.getDiscipline(), resultTypeDTO.getTime());
+                        resultTypeDTO.getDiscipline(), stringToLocalTime(resultTypeDTO.getTime()));
             case POINTS:
                 return new ResultPoints(
                         resultTypeDTO.getTrackMeet(), resultTypeDTO.getDate(), resultTypeDTO.getAthlete(),
@@ -105,5 +109,13 @@ public class ResultTypeService {
             default:
                 throw new IllegalArgumentException("Invalid result type");
         }
+    }
+
+    private String localTimeToString(LocalTime time) {
+        return time != null ? time.format(TIME_FORMATTER) : null;
+    }
+
+    private LocalTime stringToLocalTime(String timeString) {
+        return timeString != null ? LocalTime.parse(timeString, TIME_FORMATTER) : null;
     }
 }

@@ -18,14 +18,14 @@ public class ResultTypeDTO {
     private Athlete athlete;
     private Discipline discipline;
     private ResultTypeEnum resultType;
-    private Double time;
+    private String time; // Changed to String to support "HH:mm:ss.SS" format
     private Integer points;
     private Double distance;
 
     public ResultTypeDTO() {
     }
 
-    public ResultTypeDTO(Long id, TrackMeet trackMeet, LocalDateTime date, Athlete athlete, Discipline discipline, ResultTypeEnum resultType, Double time, Integer points, Double distance) {
+    public ResultTypeDTO(Long id, TrackMeet trackMeet, LocalDateTime date, Athlete athlete, Discipline discipline, ResultTypeEnum resultType, String time, Integer points, Double distance) {
         this.id = id;
         this.trackMeet = trackMeet;
         this.date = date;
